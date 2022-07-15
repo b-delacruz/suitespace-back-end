@@ -1,5 +1,5 @@
 import { Profile } from '../models/profile.js'
-import { NewsPrefs } from '../models/newsPref.js'
+import { NewsPref } from '../models/newsPref.js'
 
 function index(req, res) {
 

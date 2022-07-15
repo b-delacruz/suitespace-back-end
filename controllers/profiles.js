@@ -9,4 +9,12 @@ function index(req, res) {
   })
 }
 
-export { index }
+function createLocation(req,res){
+
+}
+
+function updateLocation(req,res){
+
+}
+
+export { index, createLocation, updateLocation }

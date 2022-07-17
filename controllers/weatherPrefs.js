@@ -1,10 +1,16 @@
-import { Profile } from '../models/profile.js'
 import { WeatherPref } from '../models/weatherPref.js'
 
-function index(req, res) {
+function getCurrenct(req, res) {
+}
 
+function getHourly(req, res) {
+}
+
+function getDaily(req, res) {
 }
 
 export {
-  index
+  getCurrent,
+  getHourly,
+  getDaily
 }

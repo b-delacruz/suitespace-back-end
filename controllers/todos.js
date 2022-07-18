@@ -1,12 +1,19 @@
 import { Profile } from '../models/profile.js'
-import { TodoItem } from '../models/todoItem.js'
+import { Todo } from '../models/todoItem.js'
 
 function index(req, res) {
-
+  Todo.find({})
+  .then(todos => {
+    res.json(todos)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
 }
 
 function create(req, res) {
-  TodoItem.create(req.body)
+  Todo.create(req.body)
   .then(todo => {
     res.json(todo)
   })

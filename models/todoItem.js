@@ -12,6 +12,6 @@ const todoItemSchema = new Schema({
   timestamps: true
 })
 
-const TodoItem = mongoose.model('Todo', todoItemSchema)
+const Todo = mongoose.model('Todo', todoItemSchema)
 
-export { TodoItem }
+export { Todo }

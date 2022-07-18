@@ -3,7 +3,7 @@ import express from 'express'
 import logger from 'morgan'
 import cors from 'cors'
 
-import { router as profilesRouter } from './routes/profiless.js'
+import { router as profilesRouter } from './routes/profiles.js'
 import { router as authRouter } from './routes/auth.js'
 import { router as calendarsRouter } from './routes/calendars.js'
 import { router as newsPrefsRouter } from './routes/newsPrefs.js'

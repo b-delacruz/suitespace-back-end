@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const weatherPrefSchema = new Schema({
   display: {
     type: String,
-    enum: ['today','hourly','weekly','monthly'],
+    enum: ['today','hourly','daily'],
     default: 'today'
   },
   chart: Boolean,

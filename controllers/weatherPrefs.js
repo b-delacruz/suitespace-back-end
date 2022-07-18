@@ -1,4 +1,5 @@
 import { WeatherPref } from '../models/weatherPref.js'
+import { Profile } from '../models/profile.js'
 import axios from 'axios'
 
 const BASE_URL = `http://api.weatherapi.com/v1`
@@ -37,7 +38,15 @@ function getDaily(req, res) {
 }
 
 function getWeatherPref(req,res) {
-
+  Profile.findById(req.user.profile)
+  .populate('weather')
+  .then(pref=>{
+    res.json(pref)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
 }
 
 export {

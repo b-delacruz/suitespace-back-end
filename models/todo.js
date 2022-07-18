@@ -3,15 +3,15 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const todoItemSchema = new Schema({
+  dueDate: Date,
   title: String,
   description: String,
-  isComplete: Boolean,
   color: String,
-  dueDate: Date
+  isComplete: Boolean
 }, {
   timestamps: true
 })
 
-const TodoItem = mongoose.model('Todo', todoItemSchema)
+const Todo = mongoose.model('Todo', todoItemSchema)
 
-export { TodoItem }
+export { Todo }

@@ -14,5 +14,7 @@ router.get('/:location/daily', weatherController.getDaily)
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.get('/preference',checkAuth, weatherController.getWeatherPref)
+router.post('/',checkAuth, weatherController.create)
+router.put('/:id', checkAuth, weatherController.update)
 
 export { router }

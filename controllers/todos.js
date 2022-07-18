@@ -1,5 +1,5 @@
 import { Profile } from '../models/profile.js'
-import { Todo } from '../models/todoItem.js'
+import { Todo } from '../models/todo.js'
 
 function index(req, res) {
   Todo.find({})

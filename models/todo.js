@@ -6,6 +6,8 @@ const todoItemSchema = new Schema({
   dueDate: Date,
   title: String,
   description: String,
+  color: String,
+  isComplete: Boolean
 }, {
   timestamps: true
 })

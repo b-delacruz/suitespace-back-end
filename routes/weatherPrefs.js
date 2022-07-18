@@ -13,6 +13,6 @@ router.get('/:location/daily', weatherController.getDaily)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.get('/preference', weatherController.getWeatherPref)
+router.get('/preference',checkAuth, weatherController.getWeatherPref)
 
 export { router }

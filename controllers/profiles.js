@@ -9,6 +9,10 @@ function index(req, res) {
   })
 }
 
+function getLocation(req,res) {
+
+}
+
 function createLocation(req,res){
 
 }
@@ -17,4 +21,4 @@ function updateLocation(req,res){
 
 }
 
-export { index, createLocation, updateLocation }
+export { index, getLocation, createLocation, updateLocation }

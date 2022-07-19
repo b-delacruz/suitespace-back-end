@@ -7,12 +7,12 @@ const router = Router()
 /*---------- Public Routes ----------*/
 
 
-router.get('/:location/current', weatherController.getCurrent)
-router.get('/:location/hourly', weatherController.getHourly)
-router.get('/:location/daily', weatherController.getDaily)
+router.get('/:location', weatherController.getWeather)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.get('/preference',checkAuth, weatherController.getWeatherPref)
+router.post('/',checkAuth, weatherController.create)
+router.put('/:id', checkAuth, weatherController.update)
 
 export { router }

@@ -12,6 +12,6 @@ router.use(decodeUserFromToken)
 router.get('/', checkAuth, profilesCtrl.index)
 router.get('/location', checkAuth, profilesCtrl.getLocation)
 router.post('/', checkAuth, profilesCtrl.createLocation)
-router.put('/:location', checkAuth, profilesCtrl.getLocation)
+router.put('/:id', checkAuth, profilesCtrl.getLocation)
 
 export { router }

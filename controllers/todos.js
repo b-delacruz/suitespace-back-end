@@ -3,6 +3,7 @@ import { Todo } from '../models/todo.js'
 
 function index(req, res) {
   Todo.find({})
+  .populate('owner')
   .then(todos => {
     res.json(todos)
   })
@@ -13,9 +14,14 @@ function index(req, res) {
 }
 
 function create(req, res) {
+  req.body.owner = req.user.profile
   Todo.create(req.body)
   .then(todo => {
-    res.json(todo)
+    Todo.findById(todo._id)
+    .populate('owner')
+    .then(populatedTodo => {
+      res.json(populatedTodo)
+    })
   })
   .catch(err => {
     console.log(err)
@@ -24,7 +30,21 @@ function create(req, res) {
 }
 
 function deleteEvent(req, res) {
-
+  Todo.findById(req.params.id)
+  .then(todo => {
+    if (todo.owner._id.equals(req.user.profile)){
+      Todo.findByIdAndDelete(todo._id)
+      .then(deletedPuppy => {
+        res.json(deletedPuppy)
+      })
+    } else { // This is not doing anything. Check auth template to display on front end.
+      res.status(401).json({err: 'Not authorized'})
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
 }
 
 function update(req, res) {

@@ -2,9 +2,10 @@ import { Profile } from '../models/profile.js'
 import { CalendarEvent } from '../models/calendarEvent.js'
 
 function index(req, res) {
-  CalendarEvent.find({})
-  .then(event => {
-    res.json(event)
+  Profile.findById(req.user.profile)
+  .populate('calendarList')
+  .then(profile => {
+    res.json(profile.calendarList)
   })
   .catch(err => {
     console.log(err)
@@ -15,7 +16,14 @@ function index(req, res) {
 function create(req, res) {
   CalendarEvent.create(req.body)
   .then(event => {
-    res.json(event)
+    Profile.findById(req.user.profile)
+    .then(profile => {
+      profile.calendarList.push(event)
+      profile.save()
+      .then(() => {
+        res.json(event)
+      })
+    })
   })
   .catch(err => {
     console.log(err)
@@ -24,24 +32,26 @@ function create(req, res) {
 }
 
 function deleteEvent(req, res) {
-
+  CalendarEvent.findByIdAndDelete(req.params.id)
+  .then(deletedEvent => {
+    res.json(deletedEvent)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  }) 
 }
 
 function update(req, res) {
-  CalendarEvent.findById(req.params.id)
-  .then(event => {
-    if (event.owner._id.equals(req.user.profile)){
-      CalendarEvent.findByIdAndUpdate(req.params.id, req.body, {new: true})
-      .populate('owner')
-      .then(updatedEvent => {
-        res.json(updatedEvent)
-      })
-      .catch(err => {
-        console.log(err)
-        res.status(500).json({err: err.errmsg})
-      })
-    }
+  CalendarEvent.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  .then(updatedEvent => {
+    console.log(updatedEvent)
+    res.json(updatedEvent)
   })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  }) 
 }
 
 export {

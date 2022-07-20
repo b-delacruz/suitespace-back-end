@@ -7,7 +7,8 @@ const todoItemSchema = new Schema({
   title: String,
   description: String,
   color: String,
-  isComplete: Boolean
+  isComplete: Boolean,
+  owner: {type: mongoose.Schema.Types.ObjectId, ref: "Profile"},
 }, {
   timestamps: true
 })

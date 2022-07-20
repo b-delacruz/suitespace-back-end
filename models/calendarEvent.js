@@ -7,7 +7,8 @@ const calendarEventSchema = new Schema({
   description: String,
   location: String,
   date: String,
-  time: String, 
+  time: String,
+  owner: {type: mongoose.Schema.Types.ObjectId, ref: "Profile"},
 }, {
   timestamps: true
 })

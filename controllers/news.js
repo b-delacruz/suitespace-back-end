@@ -12,6 +12,10 @@ function getNews(req, res) {
   .then(apiResponse => {
     res.json(apiResponse.data)
   })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({ err: err.errmsg })
+  })
 }
 
 

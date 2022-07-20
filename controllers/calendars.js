@@ -28,7 +28,7 @@ function deleteEvent(req, res) {
 }
 
 function update(req, res) {
-
+  
 }
 
 export {

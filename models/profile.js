@@ -15,7 +15,7 @@ const profileSchema = new Schema({
   location: {locationSchema},
   news: {type: mongoose.Schema.Types.ObjectId, ref:"NewsPref"},
   weather: {type: mongoose.Schema.Types.ObjectId, ref:"WeatherPref"},
-  todoList: [{type: mongoose.Schema.Types.ObjectId, ref:"TodoItem"}],
+  todoList: [{type: mongoose.Schema.Types.ObjectId, ref:"Todo"}],
   calendarList: [{type: mongoose.Schema.Types.ObjectId, ref:"CalendarEvent"}],
   favoriteLinks: {type: mongoose.Schema.Types.ObjectId, ref:"Favorite"},
 },{

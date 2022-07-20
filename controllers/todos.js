@@ -2,10 +2,11 @@ import { Profile } from '../models/profile.js'
 import { Todo } from '../models/todo.js'
 
 function index(req, res) {
-  Todo.find({})
-  .populate('owner')
-  .then(todos => {
-    res.json(todos)
+  Profile.findById(req.user.profile)
+  .populate('todoList')
+  .then(profile => {
+    console.log(profile)
+    res.json(profile.todoList)
   })
   .catch(err => {
     console.log(err)

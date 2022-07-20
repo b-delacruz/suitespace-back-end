@@ -8,7 +8,7 @@ const router = Router()
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.get('/', todoController.index) 
+router.get('/', checkAuth, todoController.index)
 router.post('/', checkAuth, todoController.create)
 router.delete('/:id', checkAuth, todoController.delete)
 router.put('/:id/todo-item', checkAuth, todoController.update)

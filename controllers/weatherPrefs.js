@@ -27,7 +27,7 @@ function getWeatherPref(req, res) {
 }
 
 function update(req, res) {
-  Profile.findById(req.params.id)
+  Profile.findById(req.user.profile)
   .then(profile=>{
     profile.updateOne({$set: {weather: req.body}})
     .then(()=>{

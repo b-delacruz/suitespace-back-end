@@ -12,7 +12,8 @@ function getLocation(req, res) {
 }
 
 function updateLocation(req, res) {
-  Profile.findByIdAndUpdate({ _id: req.user.profile }, { $set: { location: req.body } })
+  
+  Profile.findByIdAndUpdate(req.user.profile, { location: req.body.location }, {new: true})
     .then(profile => {
       res.json(profile)
     })

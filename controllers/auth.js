@@ -19,7 +19,6 @@ function signup(req, res) {
                 const token = createJWT(user)
                 WeatherPref.create({ display: 'today', chart: true })
                   .then(preference => {
-                    console.log(preference._id)
                     Profile.findByIdAndUpdate({ _id: newProfile._id }, { weather: preference._id  }, {new:true})
                     .then(()=>{
                       res.status(200).json({ token })

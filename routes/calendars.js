@@ -11,7 +11,7 @@ router.get('/', calendarController.index)
 router.use(decodeUserFromToken)
 router.post('/', checkAuth, calendarController.create)
 router.delete('/:id', checkAuth, calendarController.delete)
-router.put('/:id/add-calender-event', checkAuth, calendarController.update)
+router.put('/:id', checkAuth, calendarController.update)
 
 
 export { router }

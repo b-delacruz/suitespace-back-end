@@ -13,6 +13,7 @@ const weatherPrefSchema = new Schema({
   timestamps: true,
 })
 
+
 const WeatherPref = mongoose.model('WeatherPref', weatherPrefSchema)
 
 export { WeatherPref }

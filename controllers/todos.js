@@ -48,7 +48,20 @@ function deleteEvent(req, res) {
 }
 
 function update(req, res) {
-
+  Todo.findById(req.params.id)
+  .then(todo => {
+    if (todo.owner._id.equals(req.user.profile)){
+      Todo.findByIdAndUpdate(req.params.id, req.body, {new: true})
+      .populate('owner')
+      .then(updatedTodo => {
+        res.json(updatedTodo)
+      })
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
 }
 
 export {

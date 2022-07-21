@@ -5,13 +5,13 @@ import * as calendarController from '../controllers/calendars.js'
 const router = Router()
 
 /*---------- Public Routes ----------*/
-router.get('/', calendarController.index)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
+router.get('/', checkAuth, calendarController.index)
 router.post('/', checkAuth, calendarController.create)
 router.delete('/:id', checkAuth, calendarController.delete)
-router.put('/:id/add-calender-event', checkAuth, calendarController.update)
+router.put('/:id', checkAuth, calendarController.update)
 
 
 export { router }

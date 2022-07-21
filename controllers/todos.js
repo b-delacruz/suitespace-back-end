@@ -2,10 +2,10 @@ import { Profile } from '../models/profile.js'
 import { Todo } from '../models/todo.js'
 
 function index(req, res) {
-  Todo.find({})
-  .populate('owner')
-  .then(todos => {
-    res.json(todos)
+  Profile.findById(req.user.profile)
+  .populate('todoList')
+  .then(profile => {
+    res.json(profile.todoList)
   })
   .catch(err => {
     console.log(err)
@@ -20,7 +20,12 @@ function create(req, res) {
     Todo.findById(todo._id)
     .populate('owner')
     .then(populatedTodo => {
-      res.json(populatedTodo)
+      Profile.findById(req.user.profile)
+      .then(profile => {
+        profile.todoList.push(populatedTodo)
+        profile.save()
+        res.json(populatedTodo)
+      })
     })
   })
   .catch(err => {
@@ -48,7 +53,20 @@ function deleteEvent(req, res) {
 }
 
 function update(req, res) {
-
+  Todo.findById(req.params.id)
+  .then(todo => {
+    if (todo.owner._id.equals(req.user.profile)){
+      Todo.findByIdAndUpdate(req.params.id, req.body, {new: true})
+      .populate('owner')
+      .then(updatedTodo => {
+        res.json(updatedTodo)
+      })
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
 }
 
 export {

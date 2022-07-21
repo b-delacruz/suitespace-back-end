@@ -10,7 +10,7 @@ const profileSchema = new Schema({
   weather: {type: mongoose.Schema.Types.ObjectId, ref:"WeatherPref"},
   todoList: [{type: mongoose.Schema.Types.ObjectId, ref:"Todo"}],
   calendarList: [{type: mongoose.Schema.Types.ObjectId, ref:"CalendarEvent"}],
-  favoriteLinks: {type: mongoose.Schema.Types.ObjectId, ref:"Favorite"},
+  favoriteLinks: [{type: mongoose.Schema.Types.ObjectId, ref:"Favorite"}],
 },{
   timestamps: true,
 })

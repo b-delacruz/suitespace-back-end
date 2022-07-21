@@ -3,7 +3,8 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const FavoriteSchema = new Schema({
-  links: [String],
+  name: String,
+  link: String,
 },{
   timestamps: true
 })

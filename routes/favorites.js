@@ -5,12 +5,12 @@ import * as favoriteController from '../controllers/favorites.js'
 const router = Router()
 
 /*---------- Public Routes ----------*/
-router.get('/', favoriteController.index)
+
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.post('/', checkAuth, favoriteController.addFavorite)
 router.get('/', checkAuth, favoriteController.index)
+router.post('/', checkAuth, favoriteController.addFavorite)
 router.delete('/:id', checkAuth, favoriteController.removeFavorite)
 
 

@@ -12,7 +12,7 @@ function getLocation(req, res) {
 }
 
 function updateLocation(req, res) {
-  Profile.findByIdAndUpdate({ _id: req.user.profile }, { $set: { location: req.body } })
+  Profile.findByIdAndUpdate(req.user.profile, req.body, {new: true})
     .then(profile => {
       res.json(profile)
     })
@@ -22,4 +22,4 @@ function updateLocation(req, res) {
     })
 }
 
-export { getLocation, updateLocation }
+export { getLocation, updateLocation}

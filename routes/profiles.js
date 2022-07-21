@@ -10,6 +10,6 @@ const router = Router()
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.get('/location', checkAuth, profilesCtrl.getLocation)
-router.put('/:id', checkAuth, profilesCtrl.getLocation)
+router.put('/:id/location', checkAuth, profilesCtrl.updateLocation)
 
 export { router }

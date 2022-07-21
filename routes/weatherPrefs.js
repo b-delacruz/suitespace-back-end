@@ -6,13 +6,11 @@ const router = Router()
 
 /*---------- Public Routes ----------*/
 
-
 router.get('/:location', weatherController.getWeather)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.get('/preference',checkAuth, weatherController.getWeatherPref)
-router.post('/',checkAuth, weatherController.create)
+router.get('/user/preference',checkAuth, weatherController.getWeatherPref)
 router.put('/:id', checkAuth, weatherController.update)
 
 export { router }

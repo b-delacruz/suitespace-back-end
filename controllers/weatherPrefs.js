@@ -1,4 +1,3 @@
-import { WeatherPref } from '../models/weatherPref.js'
 import { Profile } from '../models/profile.js'
 import axios from 'axios'
 
@@ -18,8 +17,8 @@ function getWeather(req, res) {
 function getWeatherPref(req, res) {
   Profile.findById(req.user.profile)
     .populate('weather')
-    .then(pref => {
-      res.json(pref)
+    .then(profile => {
+      res.json(profile)
     })
     .catch(err => {
       console.log(err)
@@ -27,27 +26,13 @@ function getWeatherPref(req, res) {
     })
 }
 
-function create(req, res) {
-  WeatherPref.create(req.body)
-  .then(pref => {
-    Profile.findById(req.user.profile)
-    .populate('weather')
-    .then(profile=>{
-      profile.weather.push(pref)
-      profile.save()
+function update(req, res) {
+  Profile.findById(req.user.profile)
+  .then(profile=>{
+    profile.updateOne({$set: {weather: req.body}})
+    .then(()=>{
       res.json(pref)
     })
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json({ err: err.errmsg })
-  })
-}
-
-function update(req, res) {
-  WeatherPref.findByIdAndUpdate(req.params.id,req.body, {new:true})
-  .then(pref=>{
-    res.json(pref)
   })
   .catch(err => {
     console.log(err)
@@ -58,6 +43,5 @@ function update(req, res) {
 export {
   getWeather,
   getWeatherPref,
-  create,
   update
 }

@@ -5,7 +5,6 @@ function index(req, res) {
   Profile.findById(req.user.profile)
   .populate('todoList')
   .then(profile => {
-    console.log(profile)
     res.json(profile.todoList)
   })
   .catch(err => {
@@ -21,7 +20,12 @@ function create(req, res) {
     Todo.findById(todo._id)
     .populate('owner')
     .then(populatedTodo => {
-      res.json(populatedTodo)
+      Profile.findById(req.user.profile)
+      .then(profile => {
+        profile.todoList.push(populatedTodo)
+        profile.save()
+        res.json(populatedTodo)
+      })
     })
   })
   .catch(err => {

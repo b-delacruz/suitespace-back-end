@@ -10,6 +10,7 @@ import { router as favoritesRouter } from './routes/favorites.js'
 import { router as weatherPrefsRouter } from './routes/weatherPrefs.js'
 import { router as todosRouter } from './routes/todos.js'
 import { router as newsRouter } from './routes/news.js'
+import { router as bookmarkRouter } from './routes/bookmark.js'
 
 import './config/database.js'
 
@@ -26,6 +27,7 @@ app.use('/api/favorites', favoritesRouter)
 app.use('/api/weather', weatherPrefsRouter)
 app.use('/api/todos', todosRouter)
 app.use('/api/news', newsRouter)
+app.use('/api/bookmark', bookmarkRouter)
 
 
 app.use(function (req, res, next) {
